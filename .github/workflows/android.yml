@@ -12,12 +12,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Grant execute permission to gradlew
-      run: chmod +x ./gradlew
-    - name: Build Debug APK
+    - name: 下载干净的 gradlew（自动 LF 格式）
+      run: |
+        curl -o gradlew https://raw.githubusercontent.com/gradle/gradle/v8.0.0/gradlew
+        chmod +x gradlew
+    - name: 构建调试 APK
       run: ./gradlew assembleDebug
-    - name: Upload APK
+    - name: 上传 APK
       uses: actions/upload-artifact@v4
       with:
         name: debug-apk
-        path: app/build/outputs/apk/debug/*.apk
+        path: '**/*.apk'
