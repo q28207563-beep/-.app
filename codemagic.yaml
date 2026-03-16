@@ -8,9 +8,9 @@ workflows:
       java: 17 # 安卓构建需要JDK 17
     scripts:
       # 赋予Gradle执行权限
-      - chmod +x ./gradlew
+      - chmod +x ./gradlew.bat
       # 构建Debug版APK（如需Release，改assembleRelease）
-      - ./gradlew assembleDebug
+      - ./gradlew.bat assembleDebug
     artifacts:
       # 指定要导出的APK路径（构建完成后可下载）
       - app/build/outputs/apk/**/*.apk
