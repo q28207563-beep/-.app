@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+# This file is part of the Flutter Gradle Plugin.
+#
+# Copyright 2020 The Flutter Authors. All rights reserved.
+#
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This script is used to execute Gradle tasks in Flutter projects.
+
+set -e
+
+# Determine the script path.
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# Determine the project root.
+PROJECT_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
+
+# Determine the Gradle wrapper path.
+GRADLE_WRAPPER="$PROJECT_ROOT/gradlew"
+
+# Check if the Gradle wrapper exists.
+if [ ! -f "$GRADLE_WRAPPER" ]; then
+    echo "Error: Gradle wrapper not found at $GRADLE_WRAPPER"
+    exit 1
+fi
+
+# Execute the Gradle wrapper with the provided arguments.
+"$GRADLE_WRAPPER" "$@"
